@@ -11,3 +11,10 @@
 * Open http://localhost:9000/
 
 
+##Description
+
+To get counts for all open issues. First extracting Repository name and Owner name from url.
+After that using GitHub Api fetched details of repository and all open issues based on time.
+
+
+
