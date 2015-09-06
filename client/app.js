@@ -6,7 +6,8 @@ angular.module('myApp', [])
         self.getDetails = function (repoUrl) {
 
             $http.get('/getRepoDetails?repoUrl=' + repoUrl).success(function (data) {
-                self.issues = data.response;
+                self.issues = data;
+                console.log(self.issues)
             }).error(function (err) {
                 console.log("error occurred while getting task list");
             })

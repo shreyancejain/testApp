@@ -42,7 +42,8 @@ app.route('/*')
         res.sendfile(app.get('appPath') + '/index.html');
     });
 
+var port = process.env.PORT || 9000;
 
-server.listen(config.port, null, function () {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+server.listen(port, function () {
+    console.log('Express server listening on %d, in %s mode', port, app.get('env'));
 });
