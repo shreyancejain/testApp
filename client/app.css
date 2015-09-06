@@ -1,0 +1,25 @@
+.bs-callout {
+    padding: 20px !important;
+    margin: 20px 10px;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+.bs-callout-warning {
+    border-left-color: #aa6708;
+}
+
+.bs-callout-warning h4 {
+    color: #aa6708;
+}
+
+td {
+    max-width: 250px;
+    word-break: break-all;
+}
+
+.img {
+    width: 70px;
+    height: 70px;
+}
