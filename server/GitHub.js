@@ -51,7 +51,7 @@ exports.getRepoDetail = function (repoOwner, repoName, callback) {
             user: repoOwner,
             repo: repoName
         }, function (err, res) {
-            var openIssues = res && res.open_issues || res.open_issues_count;
+            var openIssues = res && (res.open_issues || res.open_issues_count);
             asyncCallback(err, openIssues);
         });
     };
