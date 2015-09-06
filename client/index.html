@@ -30,22 +30,22 @@
                 <h4>
                     Repository Details
                 </h4>
-                <table class="table table-bordered table-hover" ng-cloak>
+                <table class="table table-bordered table-hover">
                     <tr>
                         <td>Total number of open issues</td>
-                        <td>{{repo.issues.totalOpenCount || 0}}</td>
+                        <td ng-cloak>{{repo.issues.totalOpenCount || 0}}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened in the last 24 hours</td>
-                        <td>{{repo.issues.openWithinADay || 0}}</td>
+                        <td ng-cloak>{{repo.issues.openWithinADay || 0}}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened more than 24 hours ago but less than 7 days ago</td>
-                        <td>{{repo.issues.openWithinLastWeek - repo.issues.openWithinADay }}</td>
+                        <td ng-cloak>{{repo.issues.openWithinLastWeek - repo.issues.openWithinADay }}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened more than 7 days ago</td>
-                        <td>{{ repo.issues.totalOpenCount - repo.issues.openWithinLastWeek}}</td>
+                        <td ng-cloak>{{ repo.issues.totalOpenCount - repo.issues.openWithinLastWeek}}</td>
                     </tr>
                 </table>
             </div>
