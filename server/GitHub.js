@@ -1,20 +1,20 @@
 var async = require('async');
 var GitHubApi = require("github");
-var github = new GitHubApi({
+var github = new GitHubApi({   //initialized instance
     version: "3.0.0",
     headers: {
         "user-agent": "shreyancejain"
     }
 });
 
-
-function getOpenIssuesCount(userName, repoName, startDate, callback) {
+//function to count openIssues by repoOwner, repoName and date
+function getOpenIssuesCount(repoOwner, repoName, startDate, callback) {
 
     var totalCount = 0;
 
     function getCount(pageNo) {
         github.issues.repoIssues({
-            user: userName,
+            user: repoOwner,
             repo: repoName,
             state: "open",
             sort: "created",
@@ -40,12 +40,13 @@ function getOpenIssuesCount(userName, repoName, startDate, callback) {
 
 exports.getRepoDetail = function (repoOwner, repoName, callback) {
     var today = new Date();
-    var yesterday = today.getTime() - (24 * 3600 * 1000);
+    var yesterday = today.getTime() - (24 * 3600 * 1000); //calculating timestamp of 24 hours before
+    //calculating date of last Week
     var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
     lastWeek = lastWeek.getTime();
 
     var tasks = {};
-    tasks.totalOpenCount = function (asyncCallback) {
+    tasks.totalOpenCount = function (asyncCallback) { // task to fetch all open issues count
         github.repos.get({
             user: repoOwner,
             repo: repoName
@@ -65,7 +66,7 @@ exports.getRepoDetail = function (repoOwner, repoName, callback) {
         });
     };
 
-    async.parallel(tasks, function (err, results) {
+    async.parallel(tasks, function (err, results) { //executing all requests in parallel
         if (err) {
             return callback(err)
         }
