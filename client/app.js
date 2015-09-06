@@ -9,7 +9,12 @@ angular.module('myApp', [])
                 self.issues = data;
                 console.log(self.issues)
             }).error(function (err) {
-                console.log("error occurred while getting task list");
-            })
+                console.log(err);
+                var msg = "Some Error Occurred";
+                if (err.code === 404) {
+                    msg = 'Repository not found, or may be Private';
+                }
+                alert(msg);
+            });
         };
     });
