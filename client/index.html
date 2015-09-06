@@ -6,8 +6,9 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="app.css">
+        <script src="bower_components/angular/angular.js"></script>
     </head>
-    <body ng-app="myApp">
+    <body ng-app="myApp" ng-cloak>
         <div ng-controller="RepoController as repo" class="bs-callout bs-callout-warning">
             <div class="form-horizontal">
 
@@ -33,24 +34,23 @@
                 <table class="table table-bordered table-hover">
                     <tr>
                         <td>Total number of open issues</td>
-                        <td ng-cloak>{{repo.issues.totalOpenCount || 0}}</td>
+                        <td>{{repo.issues.totalOpenCount || 0}}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened in the last 24 hours</td>
-                        <td ng-cloak>{{repo.issues.openWithinADay || 0}}</td>
+                        <td>{{repo.issues.openWithinADay || 0}}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened more than 24 hours ago but less than 7 days ago</td>
-                        <td ng-cloak>{{repo.issues.openWithinLastWeek - repo.issues.openWithinADay }}</td>
+                        <td>{{repo.issues.openWithinLastWeek - repo.issues.openWithinADay }}</td>
                     </tr>
                     <tr>
                         <td>Number of open issues that were opened more than 7 days ago</td>
-                        <td ng-cloak>{{ repo.issues.totalOpenCount - repo.issues.openWithinLastWeek}}</td>
+                        <td>{{ repo.issues.totalOpenCount - repo.issues.openWithinLastWeek}}</td>
                     </tr>
                 </table>
             </div>
         </div>
-        <script src="bower_components/angular/angular.js"></script>
         <script src="app.js"></script>
     </body>
 </html>
