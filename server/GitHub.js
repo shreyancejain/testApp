@@ -29,8 +29,8 @@ function getOpenIssuesCount(repoOwner, repoName, startDate, callback) {
                     break;
                 }
             }
-            if (count === 100) { //checking if more issues available
-                totalCount += count;
+            if (count >= 100) { //checking if more issues available
+                totalCount += 100;
                 getCount(++pageNo);
             } else {
                 callback(err, totalCount + count)
