@@ -24,7 +24,11 @@ function getOpenIssuesCount(repoOwner, repoName, startDate, callback) {
             since: new Date(startDate).toISOString()
         }, function (err, res) {
             res = res || [];
-            var count = res.length;
+            for (var count = 0; count < res.length; count++) {  //counting issues actually created before start Date
+                if (new Date(res[count].created_at).getTime() < startDate) {
+                    break;
+                }
+            }
             if (count === 100) { //checking if more issues available
                 totalCount += count;
                 getCount(++pageNo);
@@ -40,7 +44,11 @@ function getOpenIssuesCount(repoOwner, repoName, startDate, callback) {
 
 exports.getRepoDetail = function (repoOwner, repoName, callback) {
     var today = new Date();
-    var yesterday = today.getTime() - (24 * 3600 * 1000); //calculating timestamp of 24 hours before
+
+    //calculating timestamp of a day ago
+    var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+    yesterday = yesterday.getTime();
+
     //calculating date of last Week
     var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
     lastWeek = lastWeek.getTime();
